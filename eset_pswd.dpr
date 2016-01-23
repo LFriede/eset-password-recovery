@@ -95,6 +95,7 @@ begin
 
     WriteLn(#13#10'-?');
     WriteLn('  Displays this help text.');
+    Exit;
   end;
 
   // Check if hash was obtained via argument, if not read it from the registry
