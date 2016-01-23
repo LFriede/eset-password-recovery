@@ -80,6 +80,23 @@ var
 begin
   WriteLn('gordon--''s ESET Password Recovery 0.1                                 techcat.de'#13#10);
 
+  // Check if help should be displayed
+  if (FindCmdLineSwitch('?')) then begin
+    WriteLn('Optional command line arguments:');
+
+    WriteLn('-h [hash]');
+    WriteLn('  If obtained this hash will be used and this tool will not search the registry for it.');
+
+    WriteLn(#13#10'-c [charset]');
+    WriteLn('  Obtain your own charset to the bruteforce routine. Default: '+defaultcharset);
+
+    WriteLn(#13#10'-l [length]');
+    WriteLn('  Define the maximal password length for the bruteforce routine. Default: 5');
+
+    WriteLn(#13#10'-?');
+    WriteLn('  Displays this help text.');
+  end;
+
   // Check if hash was obtained via argument, if not read it from the registry
   hash := 0;
   if (FindCmdLineSwitch('h', s, False, [clstValueNextParam])) then begin
@@ -111,24 +128,6 @@ begin
     end;
   end;
   WriteLn('Bruteforce password length: '+IntToStr(len));
-
-  // Check if help should be displayed
-  if (FindCmdLineSwitch('?')) then begin
-    WriteLn('Optional command line arguments:');
-
-    WriteLn('-h [hash]');
-    WriteLn('  If obtained this hash will be used and this tool will not search the registry for it.');
-
-    WriteLn(#13#10'-c [charset]');
-    WriteLn('  Obtain your own charset to the bruteforce routine. Default: '+defaultcharset);
-
-    WriteLn(#13#10'-l [length]');
-    WriteLn('  Define the maximal password length for the bruteforce routine. Default: 5');
-
-    WriteLn(#13#10'-?');
-    WriteLn('  Displays this help text.');
-  end;
-
 
   // Do the magic
   WriteLn(#13#10'Start bruteforce attack? (Y/n)');
