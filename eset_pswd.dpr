@@ -22,6 +22,10 @@ begin
   Result := False;
 
   i := RegOpenKeyEx(HKEY_LOCAL_MACHINE, 'SOFTWARE\ESET\ESET Security\CurrentVersion\Plugins\01000600\settings\EKRN_CFG', 0, KEY_READ, subkey);
+  // On 64-Bit Windows we are affected by the registry redirection, so we need to handle this case
+  if (i = ERROR_FILE_NOT_FOUND) then begin
+    i := RegOpenKeyEx(HKEY_LOCAL_MACHINE, 'SOFTWARE\ESET\ESET Security\CurrentVersion\Plugins\01000600\settings\EKRN_CFG', 0, KEY_READ OR KEY_WOW64_64KEY, subkey);
+  end;
   if (i <> ERROR_SUCCESS) then Exit;
 
   len := 4;
@@ -78,7 +82,7 @@ var
   line, charset, s:String;
   len:Integer;
 begin
-  WriteLn('gordon--''s ESET Password Recovery 0.1                                 techcat.de'#13#10);
+  WriteLn('gordon--''s ESET Password Recovery 0.2                         github.com/LFriede'#13#10);
 
   // Check if help should be displayed
   if (FindCmdLineSwitch('?')) then begin

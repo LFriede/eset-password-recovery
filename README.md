@@ -23,5 +23,10 @@ stuvwxyz0123456789_-
 The hash will be read vom the windows registry if no agruments are passed. It will be displayed, so you can write it down and use it with the -h parameter on another computer if you want.
 
 
+## Changelog
+0.2:
+ - Win64 fix (registry redirection)
+
+
 ## Build
 Tested on Delphi XE7 but should compile on any Version. Just open the .dproj file in the IDE and hit compile, there are no special requirements.
